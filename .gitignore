@@ -6,7 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# custom stuff
 credentials.py
+test*
+plot.html
 
 # Distribution / packaging
 .Python
@@ -26,7 +29,8 @@ sdist/
 var/
 wheels/
 pip-wheel-metadata/
-share/python-wheels/
+share/
+etc/
 *.egg-info/
 .installed.cfg
 *.egg

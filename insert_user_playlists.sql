@@ -1,0 +1,1 @@
+INSERT INTO playlists VALUES(givenid, givenuserid, giventitle, false)

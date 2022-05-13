@@ -11,8 +11,8 @@ credentials.py
 # Distribution / packaging
 .Python
 build/
-/bin
-/lib64
+bin/
+lib64/
 pyvenv.cfg
 develop-eggs/
 dist/
@@ -132,3 +132,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+lib64

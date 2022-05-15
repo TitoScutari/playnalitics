@@ -20,7 +20,9 @@ class SpotifyPlaylist(SpotifyObj):
     
     #TODO indexing need fix
     def get_data(self):
-        playlist_data = self.__spotify.playlist_tracks(self.id)
+        playlist_data = self.spotify.playlist(self.id)
         self.__name = playlist_data["name"]
-        self.__owner = playlist_data["owner"]
-        self.__tracks = [SpotifyTrack(track_id).get_data() for track_id in playlist_data["track_ids"]]
+        self.__owner = playlist_data["owner"]["id"]
+        self.__tracks = [SpotifyTrack(track["track"]["id"]) for track in playlist_data["tracks"]["items"]]
+        for track in self.__tracks:
+            track.get_data()

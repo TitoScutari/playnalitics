@@ -42,13 +42,14 @@ class SpotifyTrack(SpotifyObj):
         return self.__energy
 
     def get_data(self):
-        track_data = self.__spotify.audio_features()
-        self.__title = track_data["title"]
-        self.__artist = track_data["artist"]
-        self.__key = track_data["key"]
-        self.__bpm = track_data["bpm"]
-        self.__valence = track_data["valence"]
-        self.__loudness = track_data["loudness"]
-        self.__acousticness = track_data["acousticness"]
-        self.__danceability = track_data["danceability"]
-        self.__energy = track_data["energy"]
+        track_features = self.spotify.audio_features(self.id)
+        track_data = self.spotify.track(self.id)
+        self.__title = track_data["name"]
+        self.__artist = track_data["artists"][0]["name"]
+        self.__key = track_features[0]["key"]
+        self.__bpm = track_features[0]["tempo"]
+        self.__valence = track_features[0]["valence"]
+        self.__loudness = track_features[0]["loudness"]
+        self.__acousticness = track_features[0]["acousticness"]
+        self.__danceability = track_features[0]["danceability"]
+        self.__energy = track_features[0]["energy"]

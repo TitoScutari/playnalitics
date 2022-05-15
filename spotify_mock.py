@@ -42,7 +42,7 @@ class SpotifyMock:
     
     @property
     def bpm(self):
-        return 96.669
+        return 96.699
     
     @property
     def valence(self):
@@ -62,5 +62,5 @@ class SpotifyMock:
     
     @property
     def energy(self):
-        return 0.928,
+        return 0.928
     

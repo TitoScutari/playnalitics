@@ -6,7 +6,8 @@ class SpotifyTrackTest(unittest.TestCase):
 
     def setUp(self) -> None:
         self.mock = SpotifyMock()
-        self.test_track = SpotifyTrack(self.mock.track_ID).get_data()
+        self.test_track = SpotifyTrack(self.mock.track_ID)
+        self.test_track.get_data()
     
     def test_track_title(self):
         self.assertEqual(self.test_track.title, self.mock.title)

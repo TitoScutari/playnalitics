@@ -17,10 +17,11 @@ class SpotifyObj(ABC):
     def id(self):
         return self.__id
 
+    @property
+    def spotify(self):
+        return self.__spotify 
+
     @abstractmethod
     def get_data(self):
         pass
 
-    @abstractmethod
-    def to_dataframe(self):
-        pass

@@ -10,6 +10,7 @@ __pycache__/
 credentials.py
 test*
 plot.html
+*.json
 
 # Distribution / packaging
 .Python

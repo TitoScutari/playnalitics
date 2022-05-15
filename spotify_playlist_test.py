@@ -3,7 +3,7 @@ from spotify_playlist import SpotifyPlaylist
 from spotify_track import SpotifyTrack
 from spotify_mock import SpotifyMock
 
-class SpotifyPlalistTest(unittest.TestCase):
+class SpotifyPlaylistTest(unittest.TestCase):
 
     def setUp(self):
         self.mock = SpotifyMock()
@@ -11,12 +11,11 @@ class SpotifyPlalistTest(unittest.TestCase):
         self.test_track = SpotifyTrack(self.mock.track_ID).get_data()
 
     def test_playlist_name(self):
-        self.assertEqual(self.mock.playlist_name, "test")
+        self.assertEqual(self.test_playlist.name, "test")
 
     def test_playlist_owner(self):
-        self.assertEqual(self.mock.playlist_owner, '1167306845')
+        self.assertEqual(self.test_playlist.owner, self.mock.playlist_owner)
 
     def test_playlist_track(self):
         self.assertIn(self.test_track, self.test_playlist.tracks)
 
-    

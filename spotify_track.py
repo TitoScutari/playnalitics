@@ -5,7 +5,6 @@ class SpotifyTrack(SpotifyObj):
     def __init__(self, id: str):
         super().__init__(id)
 
-    
     @property
     def title(self):
         return self.__title

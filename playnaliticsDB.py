@@ -69,20 +69,14 @@ class playnaliticsDB:
 
     def select_playlists(self, user_id):
         sql = """
-        SELECT playlists.id, playlists.name
+        SELECT playlists.id, playlists.title
         FROM playlists
-        WHERE playlists.owner = %s
+        WHERE playlists.userId = %s
         """
         self.__cursor.execute(sql, user_id)
         return self.__cursor.fetchall()
 
     def select_playlist_tracks(self, playlist_id):
-        sql = """
-        SELECT *
-        FROM tracks
-        INNER JOIN playlisttracks
-        ON tracks.Id = playlisttracks.IdTrack
-        WHERE IdPlaylist = %s
-        """
-        self.__cursor.execute(playlist_id)
+        sql = "SELECT * FROM tracks INNER JOIN playlisttracks ON tracks.Id = playlisttracks.IdTrack WHERE IdPlaylist = %s"
+        self.__cursor.execute(sql, playlist_id)
         return self.__cursor.fetchall()

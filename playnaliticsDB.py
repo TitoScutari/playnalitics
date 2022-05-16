@@ -24,39 +24,44 @@ class playnaliticsDB:
         if commit:
             self.__connection.commit()
             self.__connection.close()
+    
+    def commit(self):
+        self.__connection.commit()
 
     def clean(self):
-        self.__cursor.execute(
-            """
-            TRUNCATE playlist
-            TRUNCATE tracks
-            TRUNCATE playlisttracks
-            """
-        )
+        self.__cursor.execute("TRUNCATE TABLE playlisttracks")
+        self.__cursor.execute("TRUNCATE TABLE playlists")
+        self.__cursor.execute("TRUNCATE TABLE tracks")
 
+     
     def insert_track(self, track:SpotifyTrack):
-        sql = """INSERT INTO tracks VALUES(%s, %s, %s, %f, %f, %f, %f, %f, %d, %f)"""
+        sql = """
+        INSERT INTO tracks (Id, title, artist, acusticness, danceability, energy, valence, loudness, musicKey, bpm) 
+        VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """
         self.__cursor.execute(
-            sql, 
-            track.id, 
-            track.title, 
-            track.artist, 
-            track.acousticness, 
-            track.danceability, 
-            track.energy,
-            track.valence,
-            track.loudness,
-            track.key,
-            track.bpm
+            sql,
+                (
+                track.id, 
+                track.title, 
+                track.artist, 
+                str(track.acousticness), 
+                str(track.danceability), 
+                str(track.energy),
+                str(track.valence),
+                str(track.loudness),
+                str(track.key),
+                str(track.bpm)
+                )
             )
         
     def insert_playlist(self, playlist:SpotifyPlaylist):
-        sql_playlists = """INSERT INTO playlists VALUES(%s, %s, %s)"""
-        sql_playlist_tracks = """"INSERT INTO playlisttracks VALUES(%s, %s)"""
-        self.__cursor.execute(sql_playlists, playlist.id, playlist.owner, playlist.name)
+        sql_playlists = "INSERT INTO playlists VALUES(%s, %s, %s)"
+        sql_playlist_tracks = "INSERT INTO playlisttracks VALUES(%s, %s)"
+        self.__cursor.execute(sql_playlists, (playlist.id, playlist.owner, playlist.name))
         for track in playlist.tracks:
             self.insert_track(track)
-            self.__cursor.execute(sql_playlist_tracks, playlist.id, track.id)
+            self.__cursor.execute(sql_playlist_tracks, (playlist.id, track.id))
 
     def insert_user(self, user:SpotifyUser):
         for playlist in user.playlists:
@@ -64,7 +69,7 @@ class playnaliticsDB:
 
     def select_playlists(self, user_id):
         sql = """
-        SELECT playlists.id playlists.name
+        SELECT playlists.id, playlists.name
         FROM playlists
         WHERE playlists.owner = %s
         """

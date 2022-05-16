@@ -22,9 +22,7 @@ CREATE TABLE tracks (
 );
 
 CREATE TABLE playlisttracks(
-    IdPlaylist VARCHAR(22) NOT NULL,
-    IdTrack VARCHAR(22) NOT NULL,
-    FOREIGN KEY (IdTrack) REFERENCES tracks(Id),
-    FOREIGN KEY (IdPlaylist) REFERENCES playlists(Id),
+    IdPlaylist VARCHAR(22) NOT NULL REFERENCES tracks(Id),
+    IdTrack VARCHAR(22) NOT NULL REFERENCES playlists(Id),
     PRIMARY KEY(IdTrack, IdPlaylist)
 )

@@ -5,8 +5,7 @@ USE playnaliticsDB;
 CREATE TABLE playlists (
     Id VARCHAR(22) NOT NULL PRIMARY KEY,
     userId VARCHAR(10) NOT NULL,
-    title VARCHAR(100) NOT NULL,
-    loaded BOOLEAN NOT NULL
+    title VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE tracks (
@@ -18,13 +17,13 @@ CREATE TABLE tracks (
     energy FLOAT(10) NOT NULL,
     valence FLOAT(10) NOT NULL,
     loudness FLOAT(10) NOT NULL,
-    musicKey VARCHAR(2),
-    bpm INT 
+    musicKey INT,
+    bpm FLOAT(10) 
 );
 
 CREATE TABLE playlisttracks(
-    IdTrack VARCHAR(22) NOT NULL,
     IdPlaylist VARCHAR(22) NOT NULL,
+    IdTrack VARCHAR(22) NOT NULL,
     FOREIGN KEY (IdTrack) REFERENCES tracks(Id),
     FOREIGN KEY (IdPlaylist) REFERENCES playlists(Id),
     PRIMARY KEY(IdTrack, IdPlaylist)

@@ -49,7 +49,7 @@ class playnaliticsDB:
                 str(track.danceability), 
                 str(track.energy),
                 str(track.valence),
-                str(track.loudness),
+                str((track.loudness/60)+1),
                 str(track.key),
                 str(track.bpm)
                 )

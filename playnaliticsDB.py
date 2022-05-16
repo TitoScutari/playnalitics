@@ -20,6 +20,15 @@ class playnaliticsDB:
             self.__connection.commit()
             self.__connection.close()
 
+    def clean(self):
+        self.__cursor.execute(
+            """
+            TRUNCATE playlist
+            TRUNCATE tracks
+            TRUNCATE playlisttracks
+            """
+        )
+
     def insert_track(self, track:SpotifyTrack):
         sql = """INSERT INTO tracks VALUES(%s, %s, %s, %f, %f, %f, %f, %f, %d, %f)"""
         self.__cursor.execute(
@@ -41,12 +50,12 @@ class playnaliticsDB:
         sql_playlist_tracks = """"INSERT INTO playlisttracks VALUES(%s, %s)"""
         self.__cursor.execute(sql_playlists, playlist.id, playlist.owner, playlist.name)
         for track in playlist.tracks:
-            self.insertTrack(track)
+            self.insert_track(track)
             self.__cursor.execute(sql_playlist_tracks, playlist.id, track.id)
 
     def insert_user(self, user:SpotifyUser):
         for playlist in user.playlists:
-            self.insertPlaylist(playlist)
+            self.insert_playlist(playlist)
 
     def select_playlists(self):
         pass

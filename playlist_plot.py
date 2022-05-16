@@ -1,7 +1,6 @@
 import plotly.graph_objects as go
 from playnaliticsDB import playnaliticsDB
 
-
 class PlaylistPlot():
 
   def __init__(self, playlist_id) -> None:

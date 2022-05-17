@@ -33,11 +33,11 @@ $(document).ready(function() {
     });
     
 function call_plotter(id) {
-
+  var a = "playlist_id="+id;
   $.ajax({
     type: "GET",
     url: "on_playlist.php",
-    data: id,
+    data: a,
     success: function () {
       //location.reload();
       //showDataOfJsonDescriptions()

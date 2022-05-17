@@ -51,4 +51,4 @@ class PlaylistPlot():
       showlegend=True
     )
 
-    self.fig.write_html('plot.html')
+    self.fig.write_html('plot'+self.playlist_id+'.html')

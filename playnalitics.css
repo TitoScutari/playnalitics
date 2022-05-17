@@ -1,0 +1,15 @@
+h1 {
+    font-weight: bolder;
+    font-size: 7cm;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+table {
+    font-size: 2cm;
+    font-style: italic;
+    font-stretch: ultra-expanded;
+}

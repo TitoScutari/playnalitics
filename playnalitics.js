@@ -1,6 +1,18 @@
-$(document).ready(function(){  
+$(document).ready(function() {  
   //richiesta php on_load
+  function call_load() {
+    $.ajax({
+      type: "GET",
+      url: "on_load.php",
+      success: function () {
+        // $('#content').load("plot_.html");
+        // location.reload();
+        // showDataOfJsonDescriptions()
+      }
+    })
+  };
 
+  call_load()
 
   $.getJSON("playlist_list.json", 
       function (data) 
@@ -21,14 +33,16 @@ $(document).ready(function(){
     });
     
 function call_plotter(id) {
+
   $.ajax({
     type: "GET",
     url: "on_playlist.php",
     data: id,
     success: function () {
-      $('#content').load("plot_.html");
-       location.reload();
+      //location.reload();
       //showDataOfJsonDescriptions()
     }
   });
+
+  $('#content').load("plot"+id+".html");
 }
